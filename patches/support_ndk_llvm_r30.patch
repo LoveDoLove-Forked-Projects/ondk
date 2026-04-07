@@ -1,0 +1,26 @@
+diff --git a/compiler/rustc_codegen_llvm/src/abi.rs b/compiler/rustc_codegen_llvm/src/abi.rs
+index 99407725..cddcc09b 100644
+--- a/compiler/rustc_codegen_llvm/src/abi.rs
++++ b/compiler/rustc_codegen_llvm/src/abi.rs
+@@ -509,7 +509,7 @@ fn apply_attrs_llfn(
+                 PassMode::Indirect { attrs, meta_attrs: None, on_stack: false } => {
+                     let i = apply(attrs);
+                     if cx.sess().opts.optimize != config::OptLevel::No
+-                        && llvm_util::get_version() >= (21, 0, 0)
++                        && (llvm_util::get_version() >= (21, 0, 0) && false)
+                     {
+                         attributes::apply_to_llfn(
+                             llfn,
+diff --git a/compiler/rustc_llvm/llvm-wrapper/RustWrapper.cpp b/compiler/rustc_llvm/llvm-wrapper/RustWrapper.cpp
+index eabc1c94..390585a8 100644
+--- a/compiler/rustc_llvm/llvm-wrapper/RustWrapper.cpp
++++ b/compiler/rustc_llvm/llvm-wrapper/RustWrapper.cpp
+@@ -452,7 +452,7 @@ static Attribute::AttrKind fromRust(LLVMRustAttributeKind Kind) {
+   case LLVMRustAttributeKind::DeadOnUnwind:
+     return Attribute::DeadOnUnwind;
+   case LLVMRustAttributeKind::DeadOnReturn:
+-#if LLVM_VERSION_GE(21, 0)
++#if LLVM_VERSION_GE(21, 0) && 0
+     return Attribute::DeadOnReturn;
+ #else
+     report_fatal_error("DeadOnReturn attribute requires LLVM 21 or later");

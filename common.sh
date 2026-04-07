@@ -1,20 +1,20 @@
 # Copyright 2022-2026 Google LLC.
 # SPDX-License-Identifier: Apache-2.0
 
-RUST_VERSION='1.94.0'
+RUST_VERSION='beta'
 
-NDK_VERSION='r29'
+NDK_VERSION='r30-beta1'
 NDK_DIR_VERSION=$NDK_VERSION
 
 # Android LLVM versions:
 # https://android.googlesource.com/platform/prebuilts/clang/host/linux-x86/+/mirror-goog-main-llvm-toolchain-source/README.md
 # These revisions are obtained from the Android's LLVM manifest.xml
-LLVM_SVN='563880'
-LLVM_VERSION='5e96669f06077099aa41290cdb4c5e6fa0f59349'
-LLVM_ANDROID_VERSION='38546691df970516709cc907bc7387004f69c60c'
-TOOLCHAIN_UTILS_VERSION='e4ed541c00706c0108c57921ac4b95ca98e87ec5'
+LLVM_SVN='574158'
+LLVM_VERSION='9f872551d3c681d06fd303b36f16ed5c274735eb'
+LLVM_ANDROID_VERSION='7f66b813d8e47b8e2be564f40dd9de357380a640'
+TOOLCHAIN_UTILS_VERSION='9b4f94761eea83b6edd1b59f485cddff6bd01b38'
 
-OUTPUT_VERSION='r29.6'
+OUTPUT_VERSION='r30.0'
 
 set -e
 shopt -s nullglob
@@ -93,7 +93,7 @@ clone_rust() {
   git submodule update --init --depth=1
 
   # Apply patches
-  patch -p1 < ../../patches/support_ndk_llvm_r29.patch
+  patch -p1 < ../../patches/support_ndk_llvm_r30.patch
   patch -p1 < ../../patches/support_static_libcxx.patch
 
   # Link NDK LLVM into Rust's source

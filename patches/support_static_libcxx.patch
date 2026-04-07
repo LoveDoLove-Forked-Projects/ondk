@@ -11,10 +11,10 @@ index c58dd64c..39af9a55 100644
              println!("cargo:rustc-link-search=native={}", path.parent().unwrap().display());
              if target.contains("windows") {
 diff --git a/src/bootstrap/src/core/build_steps/compile.rs b/src/bootstrap/src/core/build_steps/compile.rs
-index 11f2a28b..4aeed8ca 100644
+index 46d05b9d..89d4900a 100644
 --- a/src/bootstrap/src/core/build_steps/compile.rs
 +++ b/src/bootstrap/src/core/build_steps/compile.rs
-@@ -1496,8 +1496,11 @@ fn rustc_llvm_env(builder: &Builder<'_>, cargo: &mut Cargo, target: TargetSelect
+@@ -1484,8 +1484,11 @@ fn rustc_llvm_env(builder: &Builder<'_>, cargo: &mut Cargo, target: TargetSelect
          && !target.contains("apple")
          && !target.contains("solaris")
      {
